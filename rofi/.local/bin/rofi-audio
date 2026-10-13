@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+# rofi script-mode: звук (pactl, работает с PipeWire)
+
+tab=$(printf "\t")
+
+# иконки Nerd Font
+i_up=$(printf "\uf028");   i_down=$(printf "\uf027")
+i_mute=$(printf "\uf026"); i_mic=$(printf "\uf131")
+i_out=$(printf "\uf025");  i_in=$(printf "\uf130")
+
+# строки меню: обычная / активная (зелёная) / заголовок
+row()        { printf "%s\0info\x1f%s\n" "$1" "$2"; }
+active_row() { printf "%s\0active\x1ftrue\x1finfo\x1f%s\n" "$1" "$2"; }
+title_row()  { printf "%s\0nonselectable\x1ftrue\n" "$1"; }
+
+# устройства: "имя<TAB>описание" (мониторы пропускаем)
+devices() {
+    local name="" line
+    while IFS= read -r line; do
+        case "$line" in
+            "${tab}Name: "*)        name=${line#*Name: } ;;
+            "${tab}Description: "*) [[ "$name" == *.monitor ]] || printf "%s\t%s\n" "$name" "${line#*Description: }" ;;
+        esac
+    done < <(LC_ALL=C pactl list "$1")
+}
+
+# $1 = sinks|sources, $2 = текущее устройство, $3 = иконка
+device_rows() {
+    local name desc
+    while IFS="$tab" read -r name desc; do
+        if [ "$name" = "$2" ]; then
+            active_row "$3   $desc" "${1%s}:$name"
+        else
+            row "$3   $desc" "${1%s}:$name"
+        fi
+    done < <(devices "$1")
+}
+
+show() {
+    local vol sm mm msg
+    vol=$(LC_ALL=C pactl get-sink-volume @DEFAULT_SINK@ | grep -oE "[0-9]+%" | head -1)
+    sm=$(LC_ALL=C pactl get-sink-mute @DEFAULT_SINK@ | cut -d" " -f2)
+    mm=$(LC_ALL=C pactl get-source-mute @DEFAULT_SOURCE@ | cut -d" " -f2)
+
+    msg="Громкость $vol"
+    [ "$sm" = "yes" ] && msg="$msg · без звука"
+    [ "$mm" = "yes" ] && msg="$msg · микрофон выключен"
+
+    printf "\0prompt\x1fЗвук\n"
+    printf "\0message\x1f%s\n" "$msg"
+    printf "\0no-custom\x1ftrue\n"
+    printf "\0keep-selection\x1ftrue\n"
+
+    row "$i_up   Громче +5%" vol-up
+    row "$i_down   Тише -5%" vol-down
+    row "$i_mute   Звук вкл/выкл" mute
+    row "$i_mic   Микрофон вкл/выкл" mic
+
+    title_row "Выход"
+    device_rows sinks "$(pactl get-default-sink)" "$i_out"
+    title_row "Вход"
+    device_rows sources "$(pactl get-default-source)" "$i_in"
+}
+
+case "$ROFI_INFO" in
+    vol-up)   pactl set-sink-volume @DEFAULT_SINK@ +5% ;;
+    vol-down) pactl set-sink-volume @DEFAULT_SINK@ -5% ;;
+    mute)     pactl set-sink-mute @DEFAULT_SINK@ toggle ;;
+    mic)      pactl set-source-mute @DEFAULT_SOURCE@ toggle ;;
+    sink:*)
+        name=${ROFI_INFO#sink:}
+        pactl set-default-sink "$name"
+        # переносим уже играющие потоки на новое устройство
+        for id in $(pactl list short sink-inputs | cut -f1); do
+            pactl move-sink-input "$id" "$name"
+        done
+        exit 0 ;;
+    source:*)
+        pactl set-default-source "${ROFI_INFO#source:}"
+        exit 0 ;;
+esac
+
+# громкость и mute оставляют меню открытым, чтобы можно было жать несколько раз
+show
+

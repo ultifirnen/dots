@@ -1,0 +1,125 @@
+/* ~/.config/rofi/theme.rasi
+   Olive + пилюли. Цвета те же, что в waybar. */
+
+* {
+    bg:      #262722;
+    surface: #30312b;
+    fg:      #c7bfac;
+    muted:   #8a897d;
+    cream:   #c7bfac;
+    green:   #a0a872;
+
+    background-color: transparent;
+    text-color:       @fg;
+    font:             "JetBrainsMono Nerd Font 11";
+}
+
+window {
+    location:         center;
+    anchor:           center;
+    width:            540px;
+    background-color: @bg;
+    border:           1px;
+    border-color:     @surface;
+    border-radius:    16px;
+}
+
+mainbox {
+    padding:  10px;
+    spacing:  8px;
+    children: [ "inputbar", "message", "listview", "mode-switcher" ];
+}
+
+/* строка ввода */
+inputbar {
+    padding:          7px 14px;
+    spacing:          8px;
+    background-color: @surface;
+    border-radius:    16px;
+    children:         [ "prompt", "entry" ];
+}
+
+prompt {
+    text-color: @cream;
+}
+
+entry {
+    placeholder:       "поиск";
+    placeholder-color: @muted;
+}
+
+/* сообщение под вводом (громкость и т.п.) */
+message {
+    padding:          7px 14px;
+    border-radius:    16px;
+    background-color: @surface;
+}
+
+textbox {
+    text-color: @muted;
+}
+
+/* список */
+listview {
+    lines:        8;
+    columns:      1;
+    spacing:      3px;
+    scrollbar:    false;
+    fixed-height: false;
+    dynamic:      true;
+}
+
+element {
+    padding:       7px 14px;
+    spacing:       10px;
+    border-radius: 16px;
+}
+
+element-icon {
+    size:           1.5em;
+    vertical-align: 0.5;
+}
+
+element-text {
+    vertical-align: 0.5;
+    highlight:      bold;
+}
+
+element normal.normal, element alternate.normal {
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+/* выбранная строка - кремовая пилюля */
+element selected.normal {
+    background-color: @cream;
+    text-color:       @bg;
+}
+
+/* активное устройство в меню звука - зелёное */
+element normal.active, element alternate.active {
+    text-color: @green;
+}
+
+element selected.active {
+    background-color: @green;
+    text-color:       @bg;
+}
+
+/* вкладки режимов */
+mode-switcher {
+    spacing: 6px;
+}
+
+button {
+    padding:          6px 12px;
+    border-radius:    16px;
+    background-color: @surface;
+    text-color:       @muted;
+    horizontal-align: 0.5;
+}
+
+button selected {
+    background-color: @green;
+    text-color:       @bg;
+}

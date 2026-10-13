@@ -1,0 +1,142 @@
+@define-color wb_bg      #2e2f29;
+@define-color wb_tile    #383932;
+@define-color wb_hover   #43443c;
+@define-color wb_fg      #c7bfac;
+@define-color wb_muted   #8a897d;
+@define-color wb_white   #a0a872;
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 11px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+/* сплошная полоса на всю ширину */
+window#waybar {
+    background-color: @wb_bg;
+    color: @wb_fg;
+}
+
+/* все модули: просто текст на полосе */
+#window,
+#clock,
+#tray,
+#mpris,
+#pulseaudio,
+#cpu,
+#custom-gpu,
+#memory,
+#language,
+#battery,
+#network,
+#temperature {
+    margin: 0;
+    padding: 0 6px;
+    background-color: transparent;
+    color: @wb_fg;
+}
+
+/* правая часть: жёлтый текст */
+#pulseaudio,
+#cpu,
+#custom-gpu,
+#memory,
+#language,
+#battery,
+#network,
+#temperature {
+    color: @wb_white;
+}
+
+#pulseaudio.muted {
+    color: @wb_muted;
+}
+
+/* воркспейсы: цифры в квадратиках */
+#workspaces {
+    margin: 0 4px 0 6px;
+    padding: 0;
+    background-color: transparent;
+}
+
+#workspaces button {
+    min-width: 14px;
+    margin: 2px 1px;
+    padding: 0 4px;
+    outline: none;
+    background-image: none;
+    background-color: @wb_tile;
+    color: @wb_fg;
+    font-weight: bold;
+    transition: none;
+}
+
+#workspaces button:hover {
+    background-image: none;
+    background-color: @wb_hover;
+}
+
+#workspaces button.active {
+    background-color: @wb_fg;
+    color: @wb_bg;
+}
+
+#workspaces button.urgent {
+    background-color: #c4746e;
+    color: @wb_bg;
+}
+
+/* заголовок окна слева */
+#window {
+    font-weight: bold;
+}
+
+#window.empty {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/* центр: дата текстом, время в светлом боксе */
+#clock.date {
+    padding: 0 10px;
+}
+
+#clock.time {
+    padding: 0 14px;
+    background-color: @wb_fg;
+    color: @wb_bg;
+    font-weight: bold;
+}
+
+#mpris.paused {
+    color: @wb_muted;
+}
+
+#mpris.stopped {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+tooltip {
+    background-color: @wb_bg;
+    border: 1px solid @wb_tile;
+}
+
+tooltip label {
+    color: @wb_fg;
+    padding: 0 2px;
+}

@@ -1,0 +1,99 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 22,
+    "spacing": 0,
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window",
+        "mpris"
+    ],
+    "modules-center": [
+        "clock#date",
+        "clock#time"
+    ],
+    "modules-right": [
+        "tray",
+        "pulseaudio",
+        "cpu",
+        "custom/gpu",
+        "memory"
+    ],
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "format-window-separator": " ",
+        "window-rewrite-default": "",
+        "window-rewrite": {
+            "class<foot>": "",
+            "class<firefox>": "",
+            "class<org.telegram.desktop>": "",
+            "class<steam>": "",
+            "class<steam_app_.*>": "",
+            "class<dota2>": "",
+            "class<thunar>": "",
+            "class<(?:[Dd]iscord|vesktop|equibop|WebCord)>": "󰙯"
+        },
+        "disable-scroll": true,
+        "all-outputs": true,
+        "active-only": false,
+        "sort-by-number": true,
+        "max-icons": 3,
+        "max-windows": 3
+    },
+    "hyprland/window": {
+        "format": "",
+        "icon": true,
+        "icon-size": 14,
+        "tooltip": false
+    },
+    "clock#date": {
+        "format": " {:%a %d %b}"
+    },
+    "clock#time": {
+        "format": " {:%H:%M}",
+        "interval": 1
+    },
+    "tray": {
+        "icon-size": 14,
+        "spacing": 8
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " muted",
+        "format-icons": {
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+        "on-click": "pavucontrol",
+        "scroll-step": 5
+    },
+    "cpu": {
+        "format": " {usage}%",
+        "interval": 2
+    },
+    "custom/gpu": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "format": "󰢮 {}%",
+        "interval": 2
+    },
+    "memory": {
+        "format": " {percentage}%",
+        "interval": 5
+    },
+    "mpris": {
+        "format": "{status_icon} {title}",
+        "status-icons": {
+            "playing": "󰐊",
+            "paused": "󰏤"
+        },
+        "title-len": 32,
+        "ellipsis": "…",
+        "interval": 1,
+        "tooltip-format": "{player}: {artist} - {title}",
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next"
+    }
+}

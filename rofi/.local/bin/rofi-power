@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# rofi script-mode: сессия и питание
+
+i_lock=$(printf "\uf023");   i_moon=$(printf "\uf186")
+i_exit=$(printf "\uf08b");   i_reboot=$(printf "\uf021")
+i_off=$(printf "\uf011");    i_back=$(printf "\uf060")
+
+row() { printf "%s\0info\x1f%s\n" "$1" "$2"; }
+
+menu() {
+    printf "\0prompt\x1fПитание\n"
+    printf "\0no-custom\x1ftrue\n"
+    row "$i_lock   Заблокировать" lock
+    row "$i_moon   Сон" suspend
+    row "$i_exit   Выйти из сессии" logout
+    row "$i_reboot   Перезагрузка" reboot
+    row "$i_off   Выключить" poweroff
+}
+
+# $1 = вопрос, $2 = действие
+confirm() {
+    printf "\0prompt\x1fТочно?\n"
+    printf "\0message\x1f%s\n" "$1"
+    printf "\0no-custom\x1ftrue\n"
+    row "$i_off   Да" "do:$2"
+    row "$i_back   Отмена" menu
+}
+
+case "$ROFI_INFO" in
+    lock)        setsid -f hyprlock >/dev/null 2>&1; exit 0 ;;
+    suspend)     systemctl suspend; exit 0 ;;
+    logout)      confirm "Выйти из сессии?" logout ;;
+    reboot)      confirm "Перезагрузить компьютер?" reboot ;;
+    poweroff)    confirm "Выключить компьютер?" poweroff ;;
+    do:logout)   loginctl terminate-session "$XDG_SESSION_ID"; exit 0 ;;
+    do:reboot)   systemctl reboot; exit 0 ;;
+    do:poweroff) systemctl poweroff; exit 0 ;;
+    *)           menu ;;
+esac
+

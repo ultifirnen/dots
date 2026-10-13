@@ -1,0 +1,23 @@
+/* ~/.config/rofi/config.rasi */
+
+configuration {
+    modi: "drun,wallpaper:/home/ult/.local/bin/rofi-wallpaper,audio:/home/ult/.local/bin/rofi-audio,power:/home/ult/.local/bin/rofi-power";
+    show-icons: true;
+    icon-theme: "Papirus";
+    drun-display-format: "{name}";
+    matching: "fuzzy";
+    sorting-method: "fzf";
+
+    /* мышь: выделение не следует за курсором, клик сразу запускает */
+    hover-select: false;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+
+    display-drun: "Приложения";
+    display-wallpaper: "Обои";
+    display-audio: "Звук";
+    display-power: "Питание";
+}
+
+@theme "/home/ult/.config/rofi/theme.rasi"
+

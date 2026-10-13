@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# rofi script-mode: выбор обоев (awww)
+
+dir="$HOME/walp"
+cache="$HOME/.cache/rofi-wallpaper"
+
+# выбрали обои: ставим и выходим (rofi закроется)
+if [ -n "$ROFI_INFO" ]; then
+    awww img "$ROFI_INFO" --transition-type grow --transition-duration 1 --transition-fps 60 >/dev/null 2>&1
+    exit 0
+fi
+
+# превью 480x270 в кэше: тяжёлые оригиналы декодируются один раз, а не при каждом открытии
+thumb() {
+    local src="$1" out="$cache/${1##*/}.jpg"
+    if [ ! -s "$out" ] || [ "$src" -nt "$out" ]; then
+        if command -v magick >/dev/null; then
+            magick "$src[0]" -thumbnail 480x270^ -gravity center -extent 480x270 "$out" 2>/dev/null
+        elif command -v vipsthumbnail >/dev/null; then
+            vipsthumbnail "$src" --size 480x270 --smartcrop attention -o "$out[Q=85]" 2>/dev/null
+        elif command -v ffmpeg >/dev/null; then
+            ffmpeg -loglevel error -y -i "$src" -vf "scale=480:270:force_original_aspect_ratio=increase,crop=480:270" -frames:v 1 "$out" 2>/dev/null
+        fi
+    fi
+    if [ -s "$out" ]; then printf "%s" "$out"; else printf "%s" "$src"; fi
+}
+
+# иначе рисуем список с превью
+printf "\0prompt\x1fОбои\n"
+printf "\0no-custom\x1ftrue\n"
+
+mkdir -p "$cache"
+shopt -s nullglob nocaseglob
+for f in "$dir"/*.{jpg,jpeg,png,webp,gif,bmp}; do
+    name=${f##*/}
+    printf "%s\0icon\x1f%s\x1finfo\x1f%s\n" "${name%.*}" "$(thumb "$f")" "$f"
+done
+
