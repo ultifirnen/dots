@@ -101,3 +101,19 @@ tooltip label {
     background-position: left center, left top, left bottom, right center, right top, right bottom;
 }
 
+/* active: скобки */
+#workspaces button.active {
+    background-color: transparent;
+    color: @accent;
+    font-weight: bold;
+    background-image:
+        linear-gradient(@accent, @accent),
+        linear-gradient(@accent, @accent),
+        linear-gradient(@accent, @accent),
+        linear-gradient(@accent, @accent),
+        linear-gradient(@accent, @accent),
+        linear-gradient(@accent, @accent);
+    background-repeat: no-repeat;
+    background-size: 1px 10px, 3px 1px, 3px 1px, 1px 10px, 3px 1px, 3px 1px;
+    background-position: left center, left 20%, left 80%, right center, right 20%, right 80%;
+}
