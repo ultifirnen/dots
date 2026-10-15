@@ -1,17 +1,17 @@
 /* ~/.config/rofi/theme.rasi
-   Olive + пилюли. Цвета те же, что в waybar. */
+   Квадратная, чёрно-фиолетовая. Цвета те же, что в waybar. */
 
 * {
-    bg:      #262722;
-    surface: #30312b;
-    fg:      #c7bfac;
-    muted:   #8a897d;
-    cream:   #c7bfac;
-    green:   #a0a872;
+    bg:      #0d0c0a;
+    surface: #1a1814;
+    line:    #2b2820;
+    fg:      #e8dcc0;
+    muted:   #6b6350;
+    accent:  #a47fe0;
 
     background-color: transparent;
     text-color:       @fg;
-    font:             "JetBrainsMono Nerd Font 11";
+    font:             "DepartureMono Nerd Font 8.25";
 }
 
 window {
@@ -20,8 +20,8 @@ window {
     width:            540px;
     background-color: @bg;
     border:           1px;
-    border-color:     @surface;
-    border-radius:    16px;
+    border-color:     @accent;
+    border-radius:    0;
 }
 
 mainbox {
@@ -30,17 +30,18 @@ mainbox {
     children: [ "inputbar", "message", "listview", "mode-switcher" ];
 }
 
-/* строка ввода */
 inputbar {
     padding:          7px 14px;
     spacing:          8px;
     background-color: @surface;
-    border-radius:    16px;
+    border:           1px;
+    border-color:     @line;
+    border-radius:    0;
     children:         [ "prompt", "entry" ];
 }
 
 prompt {
-    text-color: @cream;
+    text-color: @accent;
 }
 
 entry {
@@ -48,10 +49,11 @@ entry {
     placeholder-color: @muted;
 }
 
-/* сообщение под вводом (громкость и т.п.) */
 message {
     padding:          7px 14px;
-    border-radius:    16px;
+    border:           1px;
+    border-color:     @line;
+    border-radius:    0;
     background-color: @surface;
 }
 
@@ -59,11 +61,10 @@ textbox {
     text-color: @muted;
 }
 
-/* список */
 listview {
     lines:        8;
     columns:      1;
-    spacing:      3px;
+    spacing:      2px;
     scrollbar:    false;
     fixed-height: false;
     dynamic:      true;
@@ -72,7 +73,7 @@ listview {
 element {
     padding:       7px 14px;
     spacing:       10px;
-    border-radius: 16px;
+    border-radius: 0;
 }
 
 element-icon {
@@ -90,36 +91,38 @@ element normal.normal, element alternate.normal {
     text-color:       @fg;
 }
 
-/* выбранная строка - кремовая пилюля */
+/* выбранная строка: сплошной фиолетовый прямоугольник */
 element selected.normal {
-    background-color: @cream;
+    background-color: @accent;
     text-color:       @bg;
 }
 
-/* активное устройство в меню звука - зелёное */
+/* активное устройство в меню звука */
 element normal.active, element alternate.active {
-    text-color: @green;
+    text-color: @accent;
 }
 
 element selected.active {
-    background-color: @green;
+    background-color: @fg;
     text-color:       @bg;
 }
 
-/* вкладки режимов */
 mode-switcher {
-    spacing: 6px;
+    spacing: 4px;
 }
 
 button {
     padding:          6px 12px;
-    border-radius:    16px;
+    border:           1px;
+    border-color:     @line;
+    border-radius:    0;
     background-color: @surface;
     text-color:       @muted;
     horizontal-align: 0.5;
 }
 
 button selected {
-    background-color: @green;
+    background-color: @accent;
+    border-color:     @accent;
     text-color:       @bg;
 }

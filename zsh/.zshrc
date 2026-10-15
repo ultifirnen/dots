@@ -106,3 +106,24 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # eval "$(starship init zsh)"
+
+# дополнение
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# подсказки из истории (→ или End принимает)
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# fzf: Ctrl+R — поиск по истории, Ctrl+T — файлы, Alt+C — переход в директорию
+source <(fzf --zsh)
+
+# zoxide: `z имя` прыгает в часто посещаемую папку, `zi` — выбор через fzf
+eval "$(zoxide init zsh)"
+
+# подсветка — всегда в самом конце
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+fastfetch
+
+echo davay eBash

@@ -1,13 +1,13 @@
-@define-color wb_bg      #2e2f29;
-@define-color wb_tile    #383932;
-@define-color wb_hover   #43443c;
-@define-color wb_fg      #c7bfac;
-@define-color wb_muted   #8a897d;
-@define-color wb_white   #a0a872;
+@define-color bg     #0d0c0a;
+@define-color fg     #e8dcc0;
+@define-color muted  #6b6350;
+@define-color line   #2b2820;
+@define-color sep    #5a5078;
+@define-color accent #a47fe0;
 
 * {
-    font-family: "JetBrainsMono Nerd Font";
-    font-size: 11px;
+    font-family: "DepartureMono Nerd Font";
+    font-size: 10px;
     min-height: 0;
     border: none;
     border-radius: 0;
@@ -15,128 +15,89 @@
     text-shadow: none;
 }
 
-/* сплошная полоса на всю ширину */
 window#waybar {
-    background-color: @wb_bg;
-    color: @wb_fg;
+    background-color: @bg;
+    color: @fg;
+    border-bottom: 2px solid @sep;
 }
 
-/* все модули: просто текст на полосе */
-#window,
-#clock,
-#tray,
-#mpris,
-#pulseaudio,
-#cpu,
-#custom-gpu,
-#memory,
-#language,
-#battery,
-#network,
-#temperature {
-    margin: 0;
-    padding: 0 6px;
-    background-color: transparent;
-    color: @wb_fg;
-}
-
-/* правая часть: жёлтый текст */
-#pulseaudio,
-#cpu,
-#custom-gpu,
-#memory,
-#language,
-#battery,
-#network,
-#temperature {
-    color: @wb_white;
-}
-
-#pulseaudio.muted {
-    color: @wb_muted;
-}
-
-/* воркспейсы: цифры в квадратиках */
 #workspaces {
-    margin: 0 4px 0 6px;
-    padding: 0;
-    background-color: transparent;
+    padding-right: 4px;
+    border-right: 1px solid @sep;
 }
 
 #workspaces button {
-    min-width: 14px;
-    margin: 2px 1px;
-    padding: 0 4px;
-    outline: none;
+    min-width: 22px;
+    padding: 0 2px;
+    margin: 0;
     background-image: none;
-    background-color: @wb_tile;
-    color: @wb_fg;
-    font-weight: bold;
-    transition: none;
+    background-color: transparent;
+    color: @muted;
+    font-size: 11px;
 }
 
 #workspaces button:hover {
-    background-image: none;
-    background-color: @wb_hover;
+    background-color: @line;
+    color: @fg;
 }
 
 #workspaces button.active {
-    background-color: @wb_fg;
-    color: @wb_bg;
+    background-color: @accent;
+    color: @bg;
+    font-weight: bold;
 }
 
 #workspaces button.urgent {
-    background-color: #c4746e;
-    color: @wb_bg;
+    background-color: @fg;
+    color: @bg;
 }
 
-/* заголовок окна слева */
-#window {
-    font-weight: bold;
-}
-
-#window.empty {
-    min-width: 0;
-    padding: 0;
-    margin: 0;
-}
-
-/* центр: дата текстом, время в светлом боксе */
-#clock.date {
+#mpris {
     padding: 0 10px;
 }
 
-#clock.time {
-    padding: 0 14px;
-    background-color: @wb_fg;
-    color: @wb_bg;
+#clock {
+    padding: 0 10px;
     font-weight: bold;
+    color: @accent;
 }
 
-#mpris.paused {
-    color: @wb_muted;
+#tray,
+#pulseaudio,
+#cpu,
+#custom-gpu,
+#memory {
+    padding: 0 8px;
+    border-left: 1px solid @sep;
 }
 
-#mpris.stopped {
-    min-width: 0;
-    padding: 0;
-    margin: 0;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
+#pulseaudio.muted {
+    color: @muted;
 }
 
 tooltip {
-    background-color: @wb_bg;
-    border: 1px solid @wb_tile;
+    background-color: @bg;
+    border: 1px solid @accent;
 }
 
 tooltip label {
-    color: @wb_fg;
-    padding: 0 2px;
+    color: @fg;
 }
+
+
+#workspaces button.active {
+    background-color: transparent;
+    color: @accent;
+    font-weight: bold;
+    background-image:
+        linear-gradient(@accent, @accent),
+        linear-gradient(@accent, @accent),
+        linear-gradient(@accent, @accent),
+        linear-gradient(@accent, @accent),
+        linear-gradient(@accent, @accent),
+        linear-gradient(@accent, @accent);
+    background-repeat: no-repeat;
+    background-size: 1px 100%, 3px 1px, 3px 1px, 1px 100%, 3px 1px, 3px 1px;
+    background-position: left center, left top, left bottom, right center, right top, right bottom;
+}
+

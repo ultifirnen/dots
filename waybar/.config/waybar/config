@@ -1,99 +1,61 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 22,
+    "height": 18,
     "spacing": 0,
-    "modules-left": [
-        "hyprland/workspaces",
-        "hyprland/window",
-        "mpris"
-    ],
-    "modules-center": [
-        "clock#date",
-        "clock#time"
-    ],
-    "modules-right": [
-        "tray",
-        "pulseaudio",
-        "cpu",
-        "custom/gpu",
-        "memory"
-    ],
+
+    "modules-left": ["hyprland/workspaces", "mpris"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "pulseaudio", "cpu", "custom/gpu", "memory"],
+
     "hyprland/workspaces": {
-        "format": "{name}",
-        "format-window-separator": " ",
-        "window-rewrite-default": "",
-        "window-rewrite": {
-            "class<foot>": "",
-            "class<firefox>": "",
-            "class<org.telegram.desktop>": "",
-            "class<steam>": "",
-            "class<steam_app_.*>": "",
-            "class<dota2>": "",
-            "class<thunar>": "",
-            "class<(?:[Dd]iscord|vesktop|equibop|WebCord)>": "󰙯"
-        },
+        "format": "{id}",
         "disable-scroll": true,
         "all-outputs": true,
-        "active-only": false,
-        "sort-by-number": true,
-        "max-icons": 3,
-        "max-windows": 3
+        "sort-by-number": true
     },
-    "hyprland/window": {
-        "format": "",
-        "icon": true,
-        "icon-size": 14,
+
+    "mpris": {
+        "format": "\uf04b {title}",
+        "format-paused": "\uf04c {title}",
+        "max-length": 45,
         "tooltip": false
     },
-    "clock#date": {
-        "format": " {:%a %d %b}"
-    },
-    "clock#time": {
-        "format": " {:%H:%M}",
-        "interval": 1
-    },
+
     "tray": {
-        "icon-size": 14,
-        "spacing": 8
+        "icon-size": 12,
+        "spacing": 6
     },
+
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": " muted",
+        "format-muted": "\uf466 mute",
         "format-icons": {
-            "default": [
-                "",
-                "",
-                ""
-            ]
+            "default": ["\uf026", "\uf027", "\uf028"]
         },
         "on-click": "pavucontrol",
         "scroll-step": 5
     },
+
     "cpu": {
-        "format": " {usage}%",
+        "format": "\uf2db {usage}%",
         "interval": 2
     },
+
     "custom/gpu": {
         "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
-        "format": "󰢮 {}%",
+        "format": "\udb82\udcae {}%",
         "interval": 2
     },
+
     "memory": {
-        "format": " {percentage}%",
+        "format": "\uefc5 {percentage}%",
         "interval": 5
     },
-    "mpris": {
-        "format": "{status_icon} {title}",
-        "status-icons": {
-            "playing": "󰐊",
-            "paused": "󰏤"
-        },
-        "title-len": 32,
-        "ellipsis": "…",
+
+    "clock": {
+        "format": "[ \uf017 {:%d.%m  %H:%M} ]",
         "interval": 1,
-        "tooltip-format": "{player}: {artist} - {title}",
-        "on-click": "playerctl play-pause",
-        "on-click-right": "playerctl next"
+        "tooltip": false
     }
 }
