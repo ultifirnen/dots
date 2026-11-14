@@ -1,12 +1,13 @@
-@define-color bg     #0d0c0a;
-@define-color fg     #e8dcc0;
-@define-color muted  #6b6350;
-@define-color line   #2b2820;
-@define-color sep    #5a5078;
-@define-color accent #a47fe0;
+@import url("colors.css");
+@define-color bg     #161d1c;
+@define-color fg     #dde4e2;
+@define-color muted  #899391;
+@define-color line   #2f3635;
+@define-color sep    #324b49;
+@define-color accent #b9a9e8;
 
 * {
-    font-family: "DepartureMono Nerd Font";
+    font-family: "JetBrainsMono Nerd Font";
     font-size: 10px;
     min-height: 0;
     border: none;
@@ -42,8 +43,8 @@ window#waybar {
 }
 
 #workspaces button.active {
-    background-color: @accent;
-    color: @bg;
+    background-color: alpha(@accent, 0.25);
+    color: @accent;
     font-weight: bold;
 }
 
@@ -63,6 +64,7 @@ window#waybar {
 }
 
 #tray,
+#language,
 #pulseaudio,
 #cpu,
 #custom-gpu,
@@ -84,36 +86,3 @@ tooltip label {
     color: @fg;
 }
 
-
-#workspaces button.active {
-    background-color: transparent;
-    color: @accent;
-    font-weight: bold;
-    background-image:
-        linear-gradient(@accent, @accent),
-        linear-gradient(@accent, @accent),
-        linear-gradient(@accent, @accent),
-        linear-gradient(@accent, @accent),
-        linear-gradient(@accent, @accent),
-        linear-gradient(@accent, @accent);
-    background-repeat: no-repeat;
-    background-size: 1px 100%, 3px 1px, 3px 1px, 1px 100%, 3px 1px, 3px 1px;
-    background-position: left center, left top, left bottom, right center, right top, right bottom;
-}
-
-/* active: скобки */
-#workspaces button.active {
-    background-color: transparent;
-    color: @accent;
-    font-weight: bold;
-    background-image:
-        linear-gradient(@accent, @accent),
-        linear-gradient(@accent, @accent),
-        linear-gradient(@accent, @accent),
-        linear-gradient(@accent, @accent),
-        linear-gradient(@accent, @accent),
-        linear-gradient(@accent, @accent);
-    background-repeat: no-repeat;
-    background-size: 1px 10px, 3px 1px, 3px 1px, 1px 10px, 3px 1px, 3px 1px;
-    background-position: left center, left 20%, left 80%, right center, right 20%, right 80%;
-}

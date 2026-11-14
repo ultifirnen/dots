@@ -28,13 +28,13 @@ confirm() {
 
 case "$ROFI_INFO" in
     lock)        setsid -f hyprlock >/dev/null 2>&1; exit 0 ;;
-    suspend)     systemctl suspend; exit 0 ;;
+    suspend)     loginctl suspend; exit 0 ;;
     logout)      confirm "Выйти из сессии?" logout ;;
     reboot)      confirm "Перезагрузить компьютер?" reboot ;;
     poweroff)    confirm "Выключить компьютер?" poweroff ;;
     do:logout)   loginctl terminate-session "$XDG_SESSION_ID"; exit 0 ;;
-    do:reboot)   systemctl reboot; exit 0 ;;
-    do:poweroff) systemctl poweroff; exit 0 ;;
+    do:reboot)   loginctl reboot; exit 0 ;;
+    do:poweroff) loginctl poweroff; exit 0 ;;
     *)           menu ;;
 esac
 

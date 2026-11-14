@@ -1,28 +1,41 @@
-/* сетка с превью для выбора обоев */
+/* Сетка с превью для выбора обоев */
 @import "/home/ult/.config/rofi/theme.rasi"
 
 window {
     width: 900px;
 }
 
+mainbox {
+    spacing: 8px;
+}
+
 listview {
     columns: 3;
-    lines:   3;
+    lines: 3;
     spacing: 8px;
+    fixed-height: false;
+    dynamic: true;
 }
 
 element {
     orientation: vertical;
-    padding:     8px;
-    spacing:     6px;
+    children: [ "element-icon", "element-text" ];
+    padding: 8px;
+    spacing: 6px;
+    background-color: @surface;
+    border: 1px;
+    border-color: @line;
 }
 
 element-icon {
-    size:             11em;
+    size: 11em;
     horizontal-align: 0.5;
+    vertical-align: 0.5;
 }
 
 element-text {
     horizontal-align: 0.5;
+    vertical-align: 0.5;
+    text-color: @fg;
+    background-color: transparent;
 }
-

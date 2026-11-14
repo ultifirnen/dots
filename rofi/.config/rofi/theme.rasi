@@ -2,16 +2,16 @@
    Квадратная, чёрно-фиолетовая. Цвета те же, что в waybar. */
 
 * {
-    bg:      #0d0c0a;
-    surface: #1a1814;
-    line:    #2b2820;
-    fg:      #e8dcc0;
-    muted:   #6b6350;
-    accent:  #a47fe0;
+    surface: #252b2a;
+    bg:      #161d1c;
+    fg:      #dde4e2;
+    muted:   #899391;
+    line:    #2f3635;
+    accent:  #b9a9e8;
 
     background-color: transparent;
     text-color:       @fg;
-    font:             "DepartureMono Nerd Font 8.25";
+    font:             "JetBrainsMono Nerd Font 8.25";
 }
 
 window {
