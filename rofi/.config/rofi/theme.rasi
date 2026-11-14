@@ -1,60 +1,55 @@
-/* ~/.config/rofi/theme.rasi
-   Квадратная, чёрно-фиолетовая. Цвета те же, что в waybar. */
-
 * {
-    surface: #252b2a;
-    bg:      #161d1c;
-    fg:      #dde4e2;
-    muted:   #899391;
-    line:    #2f3635;
-    accent:  #b9a9e8;
+    bg:      #040404;
+    surface: #281619;
+    hover:   #532E37;
+    line:    #743C4C;
+    fg:      #C48B89;
+    muted:   #6B6453;
 
+    font: "JetBrainsMono Nerd Font 11";
     background-color: transparent;
-    text-color:       @fg;
-    font:             "JetBrainsMono Nerd Font 8.25";
+    text-color: @fg;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
 }
 
 window {
-    location:         center;
-    anchor:           center;
-    width:            540px;
+    location: center;
+    anchor: center;
+    width: 520px;
     background-color: @bg;
-    border:           1px;
-    border-color:     @accent;
-    border-radius:    0;
+    border: 1px;
+    border-color: @line;
+    border-radius: 0;
 }
 
 mainbox {
-    padding:  10px;
-    spacing:  8px;
-    children: [ "inputbar", "message", "listview", "mode-switcher" ];
+    children: [ inputbar, message, listview ];
 }
 
 inputbar {
-    padding:          7px 14px;
-    spacing:          8px;
-    background-color: @surface;
-    border:           1px;
-    border-color:     @line;
-    border-radius:    0;
-    children:         [ "prompt", "entry" ];
+    padding: 8px 12px;
+    spacing: 8px;
+    border: 0 0 1px 0;
+    border-color: @line;
+    children: [ prompt, entry ];
 }
 
 prompt {
-    text-color: @accent;
+    text-color: @muted;
 }
 
 entry {
-    placeholder:       "поиск";
+    placeholder: "_";
     placeholder-color: @muted;
+    text-color: @fg;
 }
 
 message {
-    padding:          7px 14px;
-    border:           1px;
-    border-color:     @line;
-    border-radius:    0;
-    background-color: @surface;
+    padding: 6px 12px;
+    border: 0 0 1px 0;
+    border-color: @line;
 }
 
 textbox {
@@ -62,67 +57,48 @@ textbox {
 }
 
 listview {
-    lines:        8;
-    columns:      1;
-    spacing:      2px;
-    scrollbar:    false;
+    lines: 8;
+    columns: 1;
+    scrollbar: false;
     fixed-height: false;
-    dynamic:      true;
+    padding: 4px 0;
 }
 
 element {
-    padding:       7px 14px;
-    spacing:       10px;
-    border-radius: 0;
+    padding: 3px 12px;
+    spacing: 8px;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element normal.active,
+element alternate.active {
+    text-color: @muted;
+}
+
+element selected.normal,
+element selected.active {
+    background-color: @fg;
+    text-color: @bg;
+}
+
+element selected.urgent {
+    background-color: @hover;
+    text-color: @fg;
 }
 
 element-icon {
-    size:           1.5em;
+    size: 1.2em;
     vertical-align: 0.5;
 }
 
 element-text {
+    background-color: inherit;
+    text-color: inherit;
     vertical-align: 0.5;
-    highlight:      bold;
-}
-
-element normal.normal, element alternate.normal {
-    background-color: transparent;
-    text-color:       @fg;
-}
-
-/* выбранная строка: сплошной фиолетовый прямоугольник */
-element selected.normal {
-    background-color: @accent;
-    text-color:       @bg;
-}
-
-/* активное устройство в меню звука */
-element normal.active, element alternate.active {
-    text-color: @accent;
-}
-
-element selected.active {
-    background-color: @fg;
-    text-color:       @bg;
-}
-
-mode-switcher {
-    spacing: 4px;
-}
-
-button {
-    padding:          6px 12px;
-    border:           1px;
-    border-color:     @line;
-    border-radius:    0;
-    background-color: @surface;
-    text-color:       @muted;
-    horizontal-align: 0.5;
-}
-
-button selected {
-    background-color: @accent;
-    border-color:     @accent;
-    text-color:       @bg;
+    highlight: underline;
 }

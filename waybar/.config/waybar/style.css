@@ -1,14 +1,13 @@
-@import url("colors.css");
-@define-color bg     #161d1c;
-@define-color fg     #dde4e2;
-@define-color muted  #899391;
-@define-color line   #2f3635;
-@define-color sep    #324b49;
-@define-color accent #b9a9e8;
+@define-color bg      #040404;
+@define-color surface #281619;
+@define-color hover   #532E37;
+@define-color line    #743C4C;
+@define-color fg      #C48B89;
+@define-color muted   #6B6453;
 
 * {
     font-family: "JetBrainsMono Nerd Font";
-    font-size: 10px;
+    font-size: 11px;
     min-height: 0;
     border: none;
     border-radius: 0;
@@ -19,12 +18,12 @@
 window#waybar {
     background-color: @bg;
     color: @fg;
-    border-bottom: 2px solid @sep;
+    border-bottom: 1px solid @line;
 }
 
 #workspaces {
     padding-right: 4px;
-    border-right: 1px solid @sep;
+    border-right: 1px solid @line;
 }
 
 #workspaces button {
@@ -34,43 +33,43 @@ window#waybar {
     background-image: none;
     background-color: transparent;
     color: @muted;
-    font-size: 11px;
 }
 
 #workspaces button:hover {
-    background-color: @line;
+    background-color: @hover;
     color: @fg;
 }
 
 #workspaces button.active {
-    background-color: alpha(@accent, 0.25);
-    color: @accent;
+    background-color: @fg;
+    color: @bg;
     font-weight: bold;
 }
 
 #workspaces button.urgent {
-    background-color: @fg;
-    color: @bg;
+    background-color: @hover;
+    color: @fg;
+    text-decoration: underline;
 }
 
-#mpris {
+#window,
+#mpris,
+#clock {
     padding: 0 10px;
 }
 
 #clock {
-    padding: 0 10px;
     font-weight: bold;
-    color: @accent;
 }
 
-#tray,
-#language,
+#mpris,
 #pulseaudio,
 #cpu,
 #custom-gpu,
-#memory {
+#memory,
+#tray {
     padding: 0 8px;
-    border-left: 1px solid @sep;
+    border-left: 1px solid @line;
 }
 
 #pulseaudio.muted {
@@ -78,11 +77,10 @@ window#waybar {
 }
 
 tooltip {
-    background-color: @bg;
-    border: 1px solid @accent;
+    background-color: @surface;
+    border: 1px solid @line;
 }
 
 tooltip label {
     color: @fg;
 }
-

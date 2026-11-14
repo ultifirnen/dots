@@ -1,12 +1,13 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 18,
+    "height": 20,
     "spacing": 0,
+    "reload_style_on_change": true,
 
-    "modules-left": ["hyprland/workspaces", "mpris"],
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["tray", "pulseaudio", "cpu", "custom/gpu", "memory"],
+    "modules-right": ["mpris", "pulseaudio", "cpu", "custom/gpu", "memory", "tray"],
 
     "hyprland/workspaces": {
         "format": "{id}",
@@ -15,47 +16,54 @@
         "sort-by-number": true
     },
 
+    "hyprland/window": {
+        "format": "<span color='#6B6453'>~/&gt;</span> {title}",
+        "separate-outputs": true,
+        "max-length": 40
+    },
+
+    "clock": {
+        "format": "<span color='#6B6453'>[</span> {:%a %d.%m  %H:%M:%S} <span color='#6B6453'>]</span>",
+        "interval": 1,
+        "tooltip": false
+    },
+
     "mpris": {
-        "format": "\uf04b {title}",
-        "format-paused": "\uf04c {title}",
-        "max-length": 45,
+        "format": "<span color='#6B6453'>&gt;</span> {title}",
+        "format-paused": "<span color='#6B6453'>||</span> {title}",
+        "max-length": 32,
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "format": "<span color='#6B6453'>VOL</span> {volume:>3}%",
+        "format-muted": "<span color='#6B6453'>VOL</span> MUTE",
+        "on-click": "pavucontrol",
+        "scroll-step": 5,
+        "tooltip": false
+    },
+
+    "cpu": {
+        "format": "<span color='#6B6453'>CPU</span> {usage:>3}%",
+        "interval": 2,
+        "tooltip": false
+    },
+
+    "custom/gpu": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "format": "<span color='#6B6453'>GPU</span> {:>3}%",
+        "interval": 2,
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "<span color='#6B6453'>RAM</span> {percentage:>3}%",
+        "interval": 5,
         "tooltip": false
     },
 
     "tray": {
         "icon-size": 12,
         "spacing": 6
-    },
-
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "\uf466 mute",
-        "format-icons": {
-            "default": ["\uf026", "\uf027", "\uf028"]
-        },
-        "on-click": "pavucontrol",
-        "scroll-step": 5
-    },
-
-    "cpu": {
-        "format": "\uf2db {usage}%",
-        "interval": 2
-    },
-
-    "custom/gpu": {
-        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
-        "format": "\udb82\udcae {}%",
-        "interval": 2
-    },
-
-    "memory": {
-        "format": "\uefc5 {percentage}%",
-        "interval": 5
-    },
-
-    "clock": {
-        "format": "[ \uf017 {:%d.%m  %H:%M} ]",
-        "interval": 1,
-        "tooltip": false
     }
 }

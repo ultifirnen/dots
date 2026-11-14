@@ -13,11 +13,10 @@ configuration {
     me-select-entry: "";
     me-accept-entry: "MousePrimary";
 
-    display-drun: "Приложения";
-    display-wallpaper: "Обои";
-    display-audio: "Звук";
-    display-power: "Питание";
+    display-drun: "~/>";
+    display-wallpaper: "wall/>";
+    display-audio: "vol/>";
+    display-power: "sys/>";
 }
 
 @theme "/home/ult/.config/rofi/theme.rasi"
-

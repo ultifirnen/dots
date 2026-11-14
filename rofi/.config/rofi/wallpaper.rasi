@@ -22,9 +22,23 @@ element {
     children: [ "element-icon", "element-text" ];
     padding: 8px;
     spacing: 6px;
-    background-color: @surface;
     border: 1px;
     border-color: @line;
+}
+
+element normal.normal,
+element alternate.normal,
+element normal.active,
+element alternate.active {
+    background-color: @surface;
+    text-color: @fg;
+}
+
+element selected.normal,
+element selected.active {
+    background-color: @fg;
+    border-color: @fg;
+    text-color: @bg;
 }
 
 element-icon {
@@ -36,6 +50,6 @@ element-icon {
 element-text {
     horizontal-align: 0.5;
     vertical-align: 0.5;
-    text-color: @fg;
+    text-color: inherit;
     background-color: transparent;
 }
