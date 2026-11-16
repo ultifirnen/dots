@@ -1,0 +1,206 @@
+{
+  "general": {
+    "language": "ru",
+    "location": {
+      "ip": "185.65.133.155",
+      "latitude": 60.2015,
+      "longitude": 24.9233,
+      "city": "Helsinki",
+      "region": "Uusimaa",
+      "region_code": "18",
+      "country_name": "Finland",
+      "country_code": "FI",
+      "postal": "00240",
+      "timezone": "Europe/Helsinki",
+      "utc_offset": "+0200",
+      "currency": "EUR",
+      "languages": "fi-FI,sv-FI,smn",
+      "asn": "AS39351",
+      "org": "31173 Services AB",
+      "source": "ipapi.co",
+      "updated_at": 1793533547
+    },
+    "avatarPath": "",
+    "muteSfx": false,
+    "sfxVolume": 100,
+    "quickactions": true,
+    "settingsSeparateWindow": false,
+    "weatherInterval": 15,
+    "weatherUnit": "metric",
+    "screenshotCaptureOnRelease": true
+  },
+  "lockscreen": {
+    "fingerprintEnabled": true,
+    "attemptLimitEnabled": false,
+    "passwordMaxAttempts": 5,
+    "fingerprintMaxAttempts": 5,
+    "backgroundMode": "follow",
+    "customBackground": ""
+  },
+  "theme": {
+    "fontFamily": "AdwaitaMono Nerd Font",
+    "borderRadius": 8,
+    "elementOpacity": 69,
+    "blurBackground": false,
+    "blurStyle": "liquid",
+    "activePreset": "Matugen",
+    "matugen": true,
+    "colors": {
+      "base": "#1a0f11",
+      "blue": "#f38ba8",
+      "crust": "#0a0506",
+      "green": "#f5c2e7",
+      "mantle": "#120a0b",
+      "maroon": "#e64553",
+      "mauve": "#cba6f7",
+      "overlay0": "#7b4e54",
+      "overlay1": "#92636a",
+      "overlay2": "#a87980",
+      "peach": "#fab387",
+      "pink": "#f5c2e7",
+      "red": "#f38ba8",
+      "sapphire": "#eba0ac",
+      "subtext0": "#dcbabf",
+      "subtext1": "#ecd1d5",
+      "surface0": "#2b171a",
+      "surface1": "#3b2024",
+      "surface2": "#4e2b30",
+      "teal": "#94e2d5",
+      "text": "#fce8ea",
+      "yellow": "#f9e2af"
+    },
+    "apps": [
+      "cava",
+      "fastfetch",
+      "firefox",
+      "gtk",
+      "kitty",
+      "neovim",
+      "qt",
+      "starship"
+    ]
+  },
+  "notifications": {
+    "dnd": false,
+    "position": "top right",
+    "horizontalPosition": 88,
+    "verticalPosition": 15,
+    "sound": true,
+    "soundFile": "/home/ult/.local/share/serpantinum/src/assets/sounds/notifications/Botanica.wav",
+    "showEmptyGraphic": true,
+    "rightClickClose": true
+  },
+  "launcher": {
+    "position": "center",
+    "width": 600,
+    "itemCount": 6,
+    "terminalCommand": "kitty -e",
+    "smartRanking": true,
+    "searchProvider": "google"
+  },
+  "dock": {
+    "enabled": false,
+    "position": "bottom",
+    "onTop": true,
+    "elementSize": 44,
+    "floating": true,
+    "background": true,
+    "exclusive": false,
+    "autohide": false,
+    "smartAutohide": true,
+    "autohideTimeout": 800,
+    "editing": false,
+    "apps": [
+      {
+        "name": "Firefox",
+        "comment": "Fast and private browser",
+        "desktop_id": "firefox",
+        "icon": "firefox"
+      }
+    ],
+    "overrideBoundsCorrection": false,
+    "enableScrolling": false,
+    "visibleElements": 7,
+    "hoverScale": 120,
+    "cascadeScale": false,
+    "focusRunning": true,
+    "showRunningIndicators": true,
+    "showRunningApps": true,
+    "runningScope": "auto"
+  },
+  "bar": {
+    "position": "top",
+    "width": 100,
+    "height": 37,
+    "style": "modular",
+    "distinctPills": false,
+    "centerByEdges": true,
+    "time": {
+      "format": "HH:mm:ss"
+    },
+    "autohide": false,
+    "autohideTimeout": 10000,
+    "groupColors": {},
+    "modules": {
+      "left": [
+        "workspaces",
+        "media",
+        "focus"
+      ],
+      "center": [
+        "timedate",
+        "vis"
+      ],
+      "right": [
+        "tray",
+        "kb",
+        "sysmon",
+        "bat",
+        "wifi",
+        "vol"
+      ]
+    },
+    "workspacesStyle": "pills",
+    "timeStyle": "badge",
+    "visBarCount": 14,
+    "visAlignment": "center",
+    "sysmonStyle": "circle",
+    "sysmonStats": [
+      "cpu",
+      "ram",
+      "temp"
+    ],
+    "wifiStyle": "button",
+    "btStyle": "text",
+    "mediaInfoMode": "duration",
+    "timeShowDate": false,
+    "workspaceCount": 6,
+    "menuStyle": "icon",
+    "hideEmptyWorkspaces": false,
+    "visContinuous": false,
+    "batStyle": "classic"
+  },
+  "display": {
+    "monitors": {
+      "DP-1": {
+        "scale": 1,
+        "enabled": false
+      }
+    }
+  },
+  "idle": {
+    "manualInhibit": false,
+    "caffeineStartTime": 0,
+    "caffeineEndTime": 0
+  },
+  "osd": {
+    "horizontalPosition": 44,
+    "verticalPosition": 92,
+    "orientation": "horizontal",
+    "showCapsLock": true,
+    "showNumLock": true,
+    "showAirplane": true,
+    "attachToBar": true
+  }
+}
+

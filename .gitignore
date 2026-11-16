@@ -1,2 +1,5 @@
 *.bak
 .~lock.*
+rofi/.local/bin/uv
+rofi/.local/bin/uvx
+theme-backup/serpantinum-state/
