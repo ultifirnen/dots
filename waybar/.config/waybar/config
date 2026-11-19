@@ -9,7 +9,7 @@
     "modules-center": ["clock"],
     "modules-right": ["mpris", "pulseaudio", "cpu", "custom/gpu", "memory", "tray"],
 
-    "hyprland/workspaces": {
+    "mango/workspaces": {
         "format": "{id}",
         "disable-scroll": true,
         "all-outputs": true,
